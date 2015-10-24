@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151024130915) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "encrypted_messages", force: :cascade do |t|
     t.integer  "user_cipher_id"
     t.string   "text"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20151024130915) do
     t.datetime "updated_at",     null: false
   end
 
-  add_index "encrypted_messages", ["user_cipher_id"], name: "index_encrypted_messages_on_user_cipher_id"
+  add_index "encrypted_messages", ["user_cipher_id"], name: "index_encrypted_messages_on_user_cipher_id", using: :btree
 
   create_table "user_ciphers", force: :cascade do |t|
     t.string   "username"
@@ -30,4 +33,5 @@ ActiveRecord::Schema.define(version: 20151024130915) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "encrypted_messages", "user_ciphers"
 end

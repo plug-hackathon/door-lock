@@ -15,11 +15,19 @@ class EncryptedMessagesController < ApplicationController
     @encrypted_message_decrypted = @encrypted_message.decrypt == params[:word]
 
     if @encrypted_message_decrypted
-      lock_device.unlock_door
+      Particle.device('plughackathon').function('led', 'on')
     else
       SecretKnock.destroy_all
     end
 
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def encrypt
+    SecretKnock.destroy_all
+    Particle.device('plughackathon').function('led', 'off')
     respond_to do |format|
       format.js
     end

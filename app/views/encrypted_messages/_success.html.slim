@@ -1,4 +1,4 @@
 p.auth-info
   strong Door is open
 
-= link_to "Lock", "#", id: "lock", class: "btn waves-effect waves-light"
+= link_to "Lock", encrypt_encrypted_message_path, remote: true, id: "lock", class: "btn waves-effect waves-light"

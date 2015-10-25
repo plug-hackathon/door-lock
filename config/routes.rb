@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :encrypted_messages do
     member do
       post :decrypt
+      get  :encrypt
     end
   end
 

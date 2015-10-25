@@ -1,8 +1,10 @@
 class WebhooksController < ApplicationController
+  skip_before_action :protect_from_forgery
+
   def knock
-    Rails.logger.info "WEBHOOK: #{params.inspect}"
-    SecretKnock.create!
+    session[:secret_knock] = true
     WebsocketRails[:notifications].trigger 'knock', {}
+
     head :ok
   end
 end

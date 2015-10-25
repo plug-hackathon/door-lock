@@ -14,14 +14,12 @@ class EncryptedMessagesController < ApplicationController
     @encrypted_message = EncryptedMessage.find params[:id]
     @encrypted_message_decrypted = true #@encrypted_message.decrypt == params[:word]
 
-    SecretKnock.destroy_all
-
     if @encrypted_message_decrypted
       lock_device.unlock_door
     else
+      session[:secret_knock] = false
       redirect_to root_path
     end
-
 
     respond_to do |format|
       format.js

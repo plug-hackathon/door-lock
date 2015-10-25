@@ -5,7 +5,11 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def secret_knock_present?
+    session[:secret_knock]
+  end
+
   def require_secret_knock
-    redirect_to root_path unless SecretKnock.count > 0
+    redirect_to root_path unless secret_knock_present?
   end
 end

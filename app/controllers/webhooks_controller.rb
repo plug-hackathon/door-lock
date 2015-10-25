@@ -3,6 +3,6 @@ class WebhooksController < ApplicationController
     Rails.logger.info "WEBHOOK: #{params.inspect}"
     session[:secret_knock] = true
     WebsocketRails[:notifications].trigger 'knock', {}
-    render :nothing
+    head :ok
   end
 end

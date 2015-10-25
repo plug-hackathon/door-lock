@@ -1,3 +1,5 @@
 <% if @encrypted_message_decrypted %>
     $("#content").html("<%= j render 'success' %>");
+<% else %>
+    window.location.href = "/";
 <% end %>

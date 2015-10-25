@@ -1,5 +1,7 @@
-h1= @encrypted_message.text
+p.auth-info
+  strong= @encrypted_message.text
+
 = form_tag decrypt_encrypted_message_path(@encrypted_message), remote: true do
   = hidden_field_tag :word
 
-#mic Talk
+= link_to "Talk", "#", id: "unlock", class: "btn waves-effect waves-light"

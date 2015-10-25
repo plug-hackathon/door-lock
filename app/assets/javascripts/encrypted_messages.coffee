@@ -13,5 +13,5 @@ recognition.onresult = (e) ->
   $("#word").val(word)
   $("form:first").submit()
 
-$(document).on "click", "#mic", ->
+$(document).on "click", "#unlock", ->
   recognition.start()

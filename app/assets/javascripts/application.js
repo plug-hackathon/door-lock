@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require underscore
 //= require materialize
+//= require websocket_rails/main
 //= require_tree .
+

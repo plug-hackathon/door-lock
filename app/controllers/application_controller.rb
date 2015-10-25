@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def require_secret_knock
-    redirect_to root_path unless session[:secret_knock] == true
+    redirect_to root_path unless SecretKnock.count > 0
   end
 end

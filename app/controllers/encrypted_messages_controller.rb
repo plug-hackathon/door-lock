@@ -1,4 +1,6 @@
 class EncryptedMessagesController < ApplicationController
+  before_filter :require_secret_knock
+
   def create
     @encrypted_message = EncryptedMessage.new encrypted_message_params
     @encrypted_message.save!
@@ -12,9 +14,14 @@ class EncryptedMessagesController < ApplicationController
     @encrypted_message = EncryptedMessage.find params[:id]
     @encrypted_message_decrypted = true #@encrypted_message.decrypt == params[:word]
 
+    SecretKnock.destroy_all
+
     if @encrypted_message_decrypted
       lock_device.unlock_door
+    else
+      redirect_to root_path
     end
+
 
     respond_to do |format|
       format.js

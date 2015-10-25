@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024130915) do
+ActiveRecord::Schema.define(version: 20151025100523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20151024130915) do
   end
 
   add_index "encrypted_messages", ["user_cipher_id"], name: "index_encrypted_messages_on_user_cipher_id", using: :btree
+
+  create_table "secret_knocks", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "user_ciphers", force: :cascade do |t|
     t.string   "username"

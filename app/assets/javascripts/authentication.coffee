@@ -5,6 +5,6 @@ dispatcher = new WebSocketRails('localhost:3000/websocket')
 
 channel = dispatcher.subscribe('notifications')
 channel.bind 'knock', (data) ->
-  console.log("Knock detected!")
+  window.location.href = '/authentication/users'
 
 $('select').material_select()
